@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Recetas Pastelería & Panadería</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --card: #1a1a1a;
+    --accent: #e8a838;
+    --text: #f0f0f0;
+    --muted: #aaa;
+    --border: #333;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 12px;
+    padding-bottom: 80px;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+    padding: 12px 0 8px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 1.35rem;
+    color: var(--accent);
+    text-align: center;
+  }
+  .search {
+    width: 100%;
+    padding: 10px 14px;
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 1rem;
+  }
+  .nav {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 10px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav button {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .nav button.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .section {
+    display: none;
+  }
+  .section.active {
+    display: block;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+  }
+  .card h2 {
+    font-size: 1.15rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+  }
+  .card h3 {
+    font-size: 0.95rem;
+    color: #f0c878;
+    margin: 12px 0 6px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin: 8px 0;
+  }
+  th, td {
+    padding: 6px 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    color: var(--muted);
+    font-weight: 500;
+  }
+  td:last-child, th:last-child {
+    text-align: right;
+  }
+  ol, ul {
+    padding-left: 18px;
+    margin: 6px 0;
+  }
+  li {
+    margin-bottom: 4px;
+    font-size: 0.92rem;
+  }
+  .note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .tag {
+    display: inline-block;
+    background: #2a2a2a;
+    color: var(--accent);
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+  }
+  .scroll-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .scroll-table table {
+    min-width: 500px;
+  }
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 10px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🥖 Recetas Pastelería & Panadería</h1>
+  <input type="text" class="search" id="search" placeholder="Buscar receta..." oninput="filterCards()">
+  <div class="nav" id="nav">
+    <button class="active" onclick="showSection('pasteleria')">Pastelería</button>
+    <button onclick="showSection('panaderia')">Panadería</button>
+    <button onclick="showSection('produccion')">Producción</button>
+  </div>
+</header>
+
+<!-- ==================== PASTELERÍA ==================== -->
+<div id="pasteleria" class="section active">
+
+  <!-- ALBARICOCOCADA -->
+  <div class="card" data-name="albaricococada cocada">
+    <h2>Albaricococada</h2>
+    <h3>I. Cocada</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Coco rallado</td><td>300 g</td></tr>
+      <tr><td>Azúcar</td><td>300 g</td></tr>
+      <tr><td>Harina</td><td>30 g</td></tr>
+      <tr><td>Huevo</td><td>150 g</td></tr>
+      <tr><td>Sal</td><td>3 g</td></tr>
+    </table>
+    <h3>II. Procedimiento</h3>
+    <ol>
+      <li>Mezclar el coco, azúcar y harina y al final agregar el huevo hasta que junte.</li>
+      <li>Colocar sobre silpat y formar 3 aros de 18 cm.</li>
+      <li>Llevar al horno 160° por 15 minutos.</li>
+      <li>Dejar enfriar para armar.</li>
+    </ol>
+    <h3>III. Montaje</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Manjar blanco</td><td>500 g</td></tr>
+      <tr><td>Mermelada de albaricoque</td><td>200 g</td></tr>
+      <tr><td>Coco rallado</td><td>100 g</td></tr>
+    </table>
+    <h3>IV. Procedimiento Montaje</h3>
+    <ol>
+      <li>Colocar mermelada entre los discos.</li>
+      <li>Masquear todo con manjar y colocar coco rallado para cubrir.</li>
+    </ol>
+  </div>
+
+  <!-- SUSPIRO A LA LIMEÑA -->
+  <div class="card" data-name="suspiro a la limeña">
+    <h2>Suspiro a la Limeña</h2>
+    <h3>I. Manjar</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Leche evaporada</td><td>410 ml</td></tr>
+      <tr><td>Leche condensada</td><td>336 ml</td></tr>
+      <tr><td>Canela entera</td><td>1 unid.</td></tr>
+      <tr><td>Yemas</td><td>3 unid.</td></tr>
+    </table>
+    <h3>II. Procedimiento Manjar</h3>
+    <ol>
+      <li>Llevar a fuego moderado la leche condensada y la leche evaporada y mover constantemente hasta que espese.</li>
+      <li>Una vez tomado el punto, agregar las yemas batidas en forma de hilo sin dejar de mover.</li>
+      <li>Retirar del fuego y dejar enfriar.</li>
+    </ol>
+    <h3>III. Merengue Italiano</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Claras</td><td>2 unid.</td></tr>
+      <tr><td>Azúcar</td><td>200 g</td></tr>
+      <tr><td>Agua</td><td>50 ml</td></tr>
+      <tr><td>Vino Oporto</td><td>100 ml</td></tr>
+    </table>
+    <h3>IV. Procedimiento Merengue</h3>
+    <ol>
+      <li>Llevar al fuego azúcar, agua y vino oporto hasta obtener un almíbar.</li>
+      <li>Batir las claras hasta formar espuma y agregar el almíbar en forma de hilo, seguir batiendo hasta obtener el punto de un merengue con pico firme.</li>
+      <li>Servir el manjar en una copa evitando manchar los costados.</li>
+      <li>Llenar el merengue en una manga con boquilla rizada y formar una decoración.</li>
+      <li>Espolvorear con canela.</li>
+    </ol>
+    <h3>Montaje</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Canela molida</td><td>5 g</td></tr>
+      <tr><td>Copas venecianas 6 onzas</td><td>6 unid.</td></tr>
+    </table>
+  </div>
+
+  <!-- ENCANELADO -->
+  <div class="card" data-name="encanelado">
+    <h2>Encanelado</h2>
+    <h3>I. Bizcocho de Canela</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Harina</td><td>200 g</td></tr>
+      <tr><td>Huevos</td><td>9 unid.</td></tr>
+      <tr><td>Azúcar</td><td>250 g</td></tr>
+      <tr><td>Polvo de hornear</td><td>8 g</td></tr>
+      <tr><td>Canela molida</td><td>15 g</td></tr>
+      <tr><td>Pisco</td><td>15 g</td></tr>
+    </table>
+    <h3>II. Almíbar de Canela</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Azúcar</td><td>100 g</td></tr>
+      <tr><td>Agua</td><td>100 g</td></tr>
+      <tr><td>Canela entera</td><td>5 g</td></tr>
+      <tr><td>Zumo de naranja</td><td>300 unid.</td></tr>
+      <tr><td>Miel de abeja</td><td>100 unid.</td></tr>
+      <tr><td>Pisco</td><td>30 g</td></tr>
+    </table>
+    <h3>III. Procedimiento</h3>
+    <ol>
+      <li>Batir huevos y azúcar hasta que duplique el volumen.</li>
+      <li>Incorporar harina cernida con polvo de hornear y mezclar en forma envolvente.</li>
+      <li>Agregar el batido sobre una bandeja con papel kraft.</li>
+      <li>Hornear a 180 °C por 10 a 12 minutos aproximadamente y enfriar.</li>
+      <li>Preparar el almíbar llevando a fuego azúcar, agua, zumo de naranja y canela hasta el punto de ebullición, retirar del fuego y agregar el pisco.</li>
+      <li>Cortar en tiras, humedecer con el almíbar y untar con manjar blanco, colocarlas una sobre otra.</li>
+      <li>Espolvorear canela junto con azúcar en polvo.</li>
+    </ol>
+    <h3>Acabado</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Azúcar en polvo</td><td>50 g</td></tr>
+      <tr><td>Canela molida</td><td>5 g</td></tr>
+      <tr><td>Manjar blanco</td><td>300 g</td></tr>
+      <tr><td>Canela entera</td><td>5 g</td></tr>
+      <tr><td>Papel kraft</td><td>2 unid.</td></tr>
+    </table>
+  </div>
+
+  <!-- TARTA DE FRUTAS -->
+  <div class="card" data-name="tarta de frutas de estación">
+    <h2>Tarta de Frutas de Estación</h2>
+    <h3>I. Base de Galleta</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Galleta de vainilla</td><td>100 g</td></tr>
+      <tr><td>Margarina sin sal</td><td>70 g</td></tr>
+      <tr><td>Sal</td><td>1 g</td></tr>
+      <tr><td>Azúcar</td><td>25 g</td></tr>
+    </table>
+    <h3>II. Procedimiento Base</h3>
+    <ol>
+      <li>Moler la galleta de vainilla y mezclar con margarina derretida, azúcar y sal.</li>
+      <li>Forrar el molde deseado y hornear a 170° por 8 minutos.</li>
+    </ol>
+    <h3>III. Relleno Crema Pastelera</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Leche fresca</td><td>125 g</td></tr>
+      <tr><td>Yemas</td><td>30 g</td></tr>
+      <tr><td>Azúcar</td><td>30 g</td></tr>
+      <tr><td>Harina</td><td>13 g</td></tr>
+      <tr><td>Esencia de vainilla</td><td>2 g</td></tr>
+      <tr><td>Crema de leche</td><td>50 g</td></tr>
+      <tr><td>Crema vegetal</td><td>50 g</td></tr>
+      <tr><td>Colapiz</td><td>3 g</td></tr>
+      <tr><td>Agua para el colapiz</td><td>15 g</td></tr>
+    </table>
+    <h3>IV. Montaje</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Fresas</td><td>100 g</td></tr>
+      <tr><td>Aguaymanto</td><td>100 g</td></tr>
+      <tr><td>Kiwi</td><td>100 g</td></tr>
+      <tr><td>Brillo miroir</td><td>50 g</td></tr>
+      <tr><td>Cobertura bitter</td><td>50 g</td></tr>
+      <tr><td>Cobertura blanca</td><td>50 g</td></tr>
+      <tr><td>Filiminas</td><td>1 unid.</td></tr>
+    </table>
+    <h3>V. Procedimiento</h3>
+    <ol>
+      <li>Llevar la leche a fuego hasta que de un hervor.</li>
+      <li>Batir yemas con el azúcar hasta blanquear y agregar la harina, mezclar.</li>
+      <li>Mezclar con la leche y volver al fuego hasta que hierva por un par de minutos más.</li>
+      <li>Incorporar la crema de leche y la crema vegetal batidas.</li>
+      <li>Agregar el colapiz previamente hidratado.</li>
+      <li>Rellenar la tarta con la masa y decorar con las frutas, el brillo y algunas decoraciones de chocolate.</li>
+    </ol>
+  </div>
+
+  <!-- ROSQUITAS DULCES -->
+  <div class="card" data-name="rosquitas dulces">
+    <h2>Rosquitas Dulces</h2>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Harina</td><td>500 g</td></tr>
+      <tr><td>Margarina</td><td>100 g</td></tr>
+      <tr><td>Manteca</td><td>100 g</td></tr>
+      <tr><td>Azúcar en polvo</td><td>160 g</td></tr>
+      <tr><td>Leche fresca</td><td>100 g</td></tr>
+      <tr><td>Anís</td><td>5 g</td></tr>
+      <tr><td>Huevo</td><td>1 unid.</td></tr>
+      <tr><td>Sal</td><td>3 g</td></tr>
+      <tr><td>Polvo de hornear</td><td>6 g</td></tr>
+    </table>
+    <h3>Materiales complementarios</h3>
+    <table>
+      <tr><td>Huevos para barnizar</td><td>1 unid.</td></tr>
+      <tr><td>Harina para espolvorear</td><td>50 g</td></tr>
+      <tr><td>Poligrasa</td><td>1 unid.</td></tr>
+    </table>
+    <h3>Procedimiento</h3>
+    <ol>
+      <li>Tostar y moler el anís.</li>
+      <li>Cremar margarina, manteca, azúcar impalpable, anís tostado y sal.</li>
+      <li>Agregar el huevo, seguir cremando e incorporar la harina previamente tamizada hasta formar una masa. Agregar la leche de acuerdo a la textura y homogenizar.</li>
+      <li>Refrigerar hasta obtener una textura apropiada.</li>
+      <li>Dividir la masa en 60 unidades.</li>
+      <li>Formar, y colocar las piezas en bandejas engrasadas y barnizar con huevo.</li>
+      <li>Hornear a 160°C de 15 a 20 minutos aproximadamente.</li>
+    </ol>
+  </div>
+
+  <!-- ROSQUITAS SALADAS -->
+  <div class="card" data-name="rosquitas saladas">
+    <h2>Rosquitas Saladas</h2>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Harina</td><td>500 g</td></tr>
+      <tr><td>Manteca</td><td>220 g</td></tr>
+      <tr><td>Leche</td><td>100 g</td></tr>
+      <tr><td>Anís tostado</td><td>3 g</td></tr>
+      <tr><td>Levadura fresca</td><td>25 g</td></tr>
+      <tr><td>Azúcar</td><td>10 g</td></tr>
+      <tr><td>Sal</td><td>10 g</td></tr>
+      <tr><td>Huevo</td><td>1 unid.</td></tr>
+      <tr><td>Queso parmesano</td><td>30 g</td></tr>
+    </table>
+    <h3>Materiales complementarios</h3>
+    <table>
+      <tr><td>Harina para espolvorear</td><td>100 g</td></tr>
+      <tr><td>Huevo para barnizar</td><td>1 unid.</td></tr>
+      <tr><td>Manteca</td><td>20 g</td></tr>
+      <tr><td>Poligrasa</td><td>1 unid.</td></tr>
+    </table>
+    <h3>Procedimiento</h3>
+    <ol>
+      <li>Mezclar harina, anís, queso parmesano y sal para luego incorporar la manteca y formar una corona.</li>
+      <li>Disolver azúcar, huevo, levadura y leche y agregar a la corona. Proceder a mezclar hasta formar una masa. Dejar reposar de 5 a 10 minutos.</li>
+      <li>Dividir la masa en 60 unidades.</li>
+      <li>Formar las rosquitas y llevar a fermentar en bandejas perforadas o lisas.</li>
+      <li>Barnizar con huevo.</li>
+      <li>Hornear a 160°C por 15 a 20 minutos aproximadamente.</li>
+    </ol>
+  </div>
+
+  <!-- MAICILLOS -->
+  <div class="card" data-name="maicillos">
+    <h2>Maicillos</h2>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Harina</td><td>100 g</td></tr>
+      <tr><td>Maicena</td><td>200 g</td></tr>
+      <tr><td>Harina de maíz</td><td>200 g</td></tr>
+      <tr><td>Margarina</td><td>125 g</td></tr>
+      <tr><td>Manteca</td><td>125 g</td></tr>
+      <tr><td>Azúcar en polvo</td><td>150 g</td></tr>
+      <tr><td>Sal</td><td>2 g</td></tr>
+      <tr><td>Yema</td><td>2 unid.</td></tr>
+      <tr><td>Esencia de vainilla</td><td>3 g</td></tr>
+    </table>
+    <h3>Materiales complementarios</h3>
+    <table>
+      <tr><td>Grageas</td><td>30 g</td></tr>
+      <tr><td>Huevos para barnizar</td><td>1 unid.</td></tr>
+      <tr><td>Manteca para engrasar</td><td>50 g</td></tr>
+      <tr><td>Harina para espolvorear</td><td>100 g</td></tr>
+      <tr><td>Poligrasa</td><td>1 unid.</td></tr>
+      <tr><td>Jalea de fresa</td><td>50 g</td></tr>
+    </table>
+    <h3>Procedimiento</h3>
+    <ol>
+      <li>Cremar margarina, manteca y azúcar en polvo, sal, yema y esencia de vainilla.</li>
+      <li>Incorporar harina mezclada con harina de maíz y maicena y homogenizar hasta formar una masa homogénea.</li>
+      <li>Refrigerar hasta obtener una textura apropiada.</li>
+      <li>Moldear y cortar en porciones para luego colocarlas en bandejas enharinadas.</li>
+      <li>Barnizar con huevo y decorar con grageas o jalea de fresa.</li>
+      <li>Hornear a 160°C de 10 a 15 minutos aproximadamente.</li>
+    </ol>
+  </div>
+
+  <!-- GALLETAS DAMERO -->
+  <div class="card" data-name="galletas damero">
+    <h2>Galletas Damero</h2>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Harina</td><td>350 g</td></tr>
+      <tr><td>Polvo de hornear</td><td>5 g</td></tr>
+      <tr><td>Azúcar en polvo</td><td>250 g</td></tr>
+      <tr><td>Huevo</td><td>1 unid.</td></tr>
+      <tr><td>Margarina sin sal</td><td>225 g</td></tr>
+      <tr><td>Sal</td><td>3 g</td></tr>
+      <tr><td>Maicena</td><td>50 g</td></tr>
+      <tr><td>Cocoa en polvo (mitad de la masa)</td><td>15 g</td></tr>
+    </table>
+    <h3>Procedimiento</h3>
+    <ol>
+      <li>Cremar azúcar en polvo, margarina y huevo.</li>
+      <li>Agregar los ingredientes secos y mezclar hasta homogenizar.</li>
+      <li>Separar una mitad y agregarle la cocoa.</li>
+      <li>Refrigerar hasta obtener una textura apropiada para ambas masas.</li>
+      <li>Estirar las masas y luego pegarlas o formar de acuerdo a la creatividad.</li>
+      <li>Refrigerar, dividir y llevar a bandejas enharinadas o con papel kraft.</li>
+      <li>Hornear a 160°C por 15 minutos aproximadamente.</li>
+    </ol>
+  </div>
+
+  <!-- CAKE DE PIÑA -->
+  <div class="card" data-name="cake de piña">
+    <h2>Cake de Piña</h2>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Harina</td><td>500 g</td></tr>
+      <tr><td>Azúcar</td><td>300 g</td></tr>
+      <tr><td>Margarina</td><td>300 g</td></tr>
+      <tr><td>Almíbar de piña</td><td>200 g</td></tr>
+      <tr><td>Huevos</td><td>5 unid.</td></tr>
+      <tr><td>Polvo de hornear</td><td>16 g</td></tr>
+      <tr><td>Leche en polvo</td><td>35 g</td></tr>
+      <tr><td>Esencia de vainilla</td><td>3 g</td></tr>
+      <tr><td>Sal</td><td>5 g</td></tr>
+    </table>
+    <h3>Procedimiento</h3>
+    <ol>
+      <li>Cremar margarina, azúcar, sal y esencia de vainilla.</li>
+      <li>Incorporar tres huevos de uno en uno y continuar cremando.</li>
+      <li>Agregar al cremado la harina cernida con el polvo de hornear intercalando con los huevos restantes y el almíbar de piña.</li>
+      <li>Agregar sobre el molde circular con cono N° 26 previamente acaramelado y con rodajas de piña en los costados.</li>
+      <li>Hornear a 160°C de 80-90 minutos aproximadamente.</li>
+    </ol>
+    <h3>Caramelo</h3>
+    <table>
+      <tr><td>Azúcar</td><td>250 g</td></tr>
+      <tr><td>Agua</td><td>80 g</td></tr>
+      <tr><td>Limón (opcional)</td><td>1 unid.</td></tr>
+    </table>
+    <p class="note">Llevar a cocción hasta que tome color y punto para moldear.</p>
+    <h3>Piña de Almíbar</h3>
+    <table>
+      <tr><td>Piña mediana</td><td>1 unid.</td></tr>
+      <tr><td>Azúcar</td><td>200 g</td></tr>
+      <tr><td>Agua</td><td>250 ml</td></tr>
+    </table>
+    <ol>
+      <li>Pelar la piña y cortarla en rodajas.</li>
+      <li>Llevar a fuego todos los insumos hasta que las piñas estén suaves.</li>
+      <li>Retirar, enfriar las rodajas y reservar el almíbar.</li>
+    </ol>
+  </div>
+
+  <!-- PIE DE MANZANA -->
+  <div class="card" data-name="pie de manzana">
+    <h2>Pie de Manzana</h2>
+    <h3>I. Masa Frolla</h3>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Harina</td><td>130 g</td></tr>
+      <tr><td>Margarina</td><td>60 g</td></tr>
+      <tr><td>Azúcar en polvo</td><td>40 g</td></tr>
+      <tr><td>Huevo</td><td>1 unid.</td></tr>
+      <tr><td>Leche fresca</td><td>6 g</td></tr>
+      <tr><td>Sal</td><td>1 g</td></tr>
+      <tr><td>Esencia de vainilla</td><td>2 g</td></tr>
+      <tr><td>Polvo de hornear (opcional)</td><td>2 g</td></tr>
+    </table>
+    <h3>II. Procedimiento Masa</h3>
+    <ol>
+      <li>Realizar el método de sableado mezclando los ingr. secos y las grasas.</li>
+      <li>Incorporar leche, huevos, sal y esencia de vainilla previamente mezclado.</li>
+      <li>Refrigerar hasta obtener una textura apropiada.</li>
+      <li>Laminar tres cuartas partes de masa y colocarla en un molde N° 26 realizando agujeros.</li>
+      <li>Realizar un primer horneado a 170°C por 20 minutos.</li>
+      <li>Rellenar el molde y cubrir con la masa restante de acuerdo a la creatividad.</li>
+      <li>Barnizar y hornear a 170°C de 25 a 30 minutos aproximadamente.</li>
+    </ol>
+    <h3>Relleno</h3>
+    <table>
+      <tr><td>Manzana Israel</td><td>700 g</td></tr>
+      <tr><td>Azúcar</td><td>60 g</td></tr>
+      <tr><td>Pasas</td><td>10 g</td></tr>
+      <tr><td>Canela en polvo</td><td>2 unid.</td></tr>
+    </table>
+    <ol>
+      <li>Lavar las manzanas, pelarlas y cortarlas.</li>
+      <li>Colocarlas en una olla junto con el azúcar y llevarlas a fuego moderado.</li>
+      <li>Agregar las pasas y finalmente la canela.</li>
+    </ol>
+  </div>
+
+</div>
+
+<!-- ==================== PANADERÍA ==================== -->
+<div id="panaderia" class="section">
+
+  <!-- CIABATTA ANDINO -->
+  <div class="card" data-name="ciabatta andino">
+    <h2>Ciabatta Andino</h2>
+    <p class="note">Reemplaza el trigo, la quinua y la kiwicha por los cereales o granos que prefieras.</p>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Harina</td><td>1 kg</td></tr>
+      <tr><td>Masa madre</td><td>250 g</td></tr>
+      <tr><td>Poolish</td><td>900 g</td></tr>
+      <tr><td>Sal</td><td>40 g</td></tr>
+      <tr><td>Agua</td><td>650 ml</td></tr>
+      <tr><td>Trigo hervido</td><td>200 g</td></tr>
+      <tr><td>Quinua hervida</td><td>200 g</td></tr>
+      <tr><td>Kiwicha hervida</td><td>200 g</td></tr>
+      <tr><td>Harina (enharinado)</td><td>100 g</td></tr>
+    </table>
+    <h3>Preparación</h3>
+    <ol>
+      <li>Incorpora en la batidora todos los ingredientes, salvo los cereales. Mézclalos en 1ª velocidad 4 min y en 3ª velocidad 5 min.</li>
+      <li>Antes de retirar la masa, agrega los cereales y bate 10 segundos.</li>
+      <li>Retira la masa, cúbrela con una tela y déjala reposar 1 hora sobre superficie de madera.</li>
+      <li>Llévala a mesa enharinada y forma una tira de 6 cm de ancho. Córtala cada 8 cm en rectángulos.</li>
+      <li>Cúbrelos con tela y déjalos fermentar 1 hora.</li>
+      <li>Precalienta el horno a 250°C durante 5 minutos.</li>
+      <li>Coloca las piezas sobre bandeja enharinada, cúbrelas con harina y hornéalas a 180°C durante 22 minutos.</li>
+      <li>Genera vapor dentro del horno al introducir la bandeja.</li>
+    </ol>
+    <p class="note">Panes: 40 | Preparación: 145' | Cocción: 22'</p>
+  </div>
+
+  <!-- MASA MADRE -->
+  <div class="card" data-name="masa madre prefermentos">
+    <h2>Masa Madre (Prefermento)</h2>
+    <p class="note">Los prefermentos resaltan de manera natural las cualidades del pan. Preparar con muchas horas de anticipación.</p>
+    <table>
+      <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+      <tr><td>Harina</td><td>1 kg</td></tr>
+      <tr><td>Agua</td><td>1 l</td></tr>
+      <tr><td>Harina integral</td><td>½ kg</td></tr>
+      <tr><td>Cerveza</td><td>½ tz</td></tr>
+    </table>
+    <h3>Preparación</h3>
+    <ol>
+      <li>Mezcla todos los ingredientes dentro de un bol.</li>
+      <li>Cubre el bol con papel film y deja reposar 24 horas a temperatura ambiente.</li>
+      <li>Durante la fermentación, la masa doblará su tamaño.</li>
+    </ol>
+  </div>
+
+</div>
+
+<!-- ==================== PRODUCCIÓN ==================== -->
+<div id="produccion" class="section">
+
+  <div class="card" data-name="tablas de produccion">
+    <h2>Tablas de Producción – Resumen</h2>
+    <p class="note">Fórmulas para producción en gramos. Usa el buscador para filtrar.</p>
+  </div>
+
+  <!-- Encimados / Pastelería producción -->
+  <div class="card" data-name="encimados crema pastelera pasta chirimoya rosca canela croissant brioche">
+    <h2>Encimados / Pastelería</h2>
+    <div class="scroll-table">
+      <table>
+        <tr>
+          <th>Ingrediente</th>
+          <th>Encimados 2000</th>
+          <th>Pasta Chir.</th>
+          <th>Crema Pas.</th>
+          <th>Rosca Canela 1500</th>
+          <th>Croissant 2000</th>
+          <th>Brioche 1500</th>
+        </tr>
+        <tr><td>Harina Pastelera</td><td>2000</td><td>600</td><td>—</td><td>1500</td><td>2000</td><td>1500</td></tr>
+        <tr><td>Mejorador</td><td>20</td><td>—</td><td>—</td><td>15</td><td>—</td><td>—</td></tr>
+        <tr><td>Leche en Polvo</td><td>60</td><td>—</td><td>—</td><td>45</td><td>—</td><td>—</td></tr>
+        <tr><td>Levadura Fresca</td><td>80</td><td>—</td><td>—</td><td>60</td><td>60</td><td>60</td></tr>
+        <tr><td>Agua</td><td>600</td><td>—</td><td>—</td><td>450</td><td>1100</td><td>—</td></tr>
+        <tr><td>Sal Yodada</td><td>20</td><td>—</td><td>—</td><td>15</td><td>40</td><td>23</td></tr>
+        <tr><td>Azúcar Blanca</td><td>400</td><td>—</td><td>190</td><td>300</td><td>300</td><td>225</td></tr>
+        <tr><td>Huevos</td><td>360</td><td>—</td><td>—</td><td>270</td><td>—</td><td>675</td></tr>
+        <tr><td>Margarina</td><td>240</td><td>—</td><td>—</td><td>180</td><td>—</td><td>750</td></tr>
+        <tr><td>Manteca</td><td>—</td><td>360</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Azúcar Impalpable</td><td>—</td><td>180</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Leche Fresca</td><td>—</td><td>—</td><td>760</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Maicena</td><td>—</td><td>—</td><td>76</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Yemas</td><td>—</td><td>—</td><td>91</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Masa Total</td><td>3784</td><td>1141</td><td>1167</td><td>2838</td><td>3500</td><td>3308</td></tr>
+        <tr><td>Peso unidad</td><td>50</td><td>35</td><td>35</td><td>250</td><td>40</td><td>40</td></tr>
+        <tr><td>Rendimiento</td><td>76</td><td>33</td><td>33</td><td>11</td><td>88</td><td>83</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Ciabattas -->
+  <div class="card" data-name="ciabatta clasico fibra hojaldre chocolate campestre foccacia">
+    <h2>Ciabattas & Foccacia</h2>
+    <div class="scroll-table">
+      <table>
+        <tr>
+          <th>Ingrediente</th>
+          <th>Clásico 2000</th>
+          <th>Fibra 2000</th>
+          <th>Hojaldre 2000</th>
+          <th>Chocolate 1500</th>
+          <th>Campestre 1000</th>
+          <th>Foccacia 1500</th>
+        </tr>
+        <tr><td>Harina Panadera</td><td>2000</td><td>1800</td><td>2000</td><td>1500</td><td>1000</td><td>1500</td></tr>
+        <tr><td>Levadura Fresca</td><td>40</td><td>40</td><td>40</td><td>30</td><td>20</td><td>30</td></tr>
+        <tr><td>Agua</td><td>1500</td><td>1170</td><td>1400</td><td>975</td><td>650</td><td>1050</td></tr>
+        <tr><td>Sal Yodada</td><td>40</td><td>40</td><td>40</td><td>30</td><td>20</td><td>30</td></tr>
+        <tr><td>Aceite de Oliva</td><td>80</td><td>—</td><td>—</td><td>—</td><td>60</td><td>60</td></tr>
+        <tr><td>Salvado</td><td>—</td><td>200</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Ajonjolí</td><td>—</td><td>80</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Margarina Hojaldre</td><td>—</td><td>—</td><td>600</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Chocolate chispas</td><td>—</td><td>—</td><td>—</td><td>600</td><td>—</td><td>—</td></tr>
+        <tr><td>Azúcar Rubia</td><td>—</td><td>—</td><td>—</td><td>225</td><td>—</td><td>—</td></tr>
+        <tr><td>Albahaca / Espinaca</td><td>—</td><td>—</td><td>—</td><td>—</td><td>100/100</td><td>—</td></tr>
+        <tr><td>Queso de Paria</td><td>—</td><td>—</td><td>—</td><td>—</td><td>200</td><td>—</td></tr>
+        <tr><td>Masa Total</td><td>3660</td><td>3330</td><td>4080</td><td>3360</td><td>2154</td><td>2670</td></tr>
+        <tr><td>Peso unidad</td><td>70</td><td>70</td><td>60</td><td>80</td><td>75</td><td>1300</td></tr>
+        <tr><td>Rendimiento</td><td>52</td><td>48</td><td>68</td><td>42</td><td>29</td><td>2</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Panes clásicos -->
+  <div class="card" data-name="pan flauta baguette granos filone">
+    <h2>Pan Flauta / Baguette / Granos / Filone</h2>
+    <div class="scroll-table">
+      <table>
+        <tr>
+          <th>Ingrediente</th>
+          <th>Flauta 2000</th>
+          <th>Baguette 2000</th>
+          <th>Granos 2000</th>
+          <th>Filone 1500</th>
+        </tr>
+        <tr><td>Harina Panadera</td><td>2000</td><td>2000</td><td>2000</td><td>1500</td></tr>
+        <tr><td>Levadura Fresca</td><td>40</td><td>40</td><td>40</td><td>30</td></tr>
+        <tr><td>Agua</td><td>1140</td><td>1300</td><td>1200</td><td>975</td></tr>
+        <tr><td>Sal Yodada</td><td>40</td><td>40</td><td>40</td><td>30</td></tr>
+        <tr><td>Manteca</td><td>40</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Ajonjolí</td><td>—</td><td>—</td><td>200</td><td>—</td></tr>
+        <tr><td>Linaza</td><td>—</td><td>—</td><td>400</td><td>—</td></tr>
+        <tr><td>Aceite de Oliva</td><td>—</td><td>—</td><td>—</td><td>60</td></tr>
+        <tr><td>Aceituna Verde</td><td>—</td><td>—</td><td>—</td><td>375</td></tr>
+        <tr><td>Masa Total</td><td>3260</td><td>3380</td><td>3880</td><td>2976</td></tr>
+        <tr><td>Peso unidad</td><td>150</td><td>300</td><td>300</td><td>300</td></tr>
+        <tr><td>Rendimiento</td><td>22</td><td>11</td><td>13</td><td>10</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Chalaco / Chancay / Panetón -->
+  <div class="card" data-name="galleta agua chalaco chancay paneton">
+    <h2>Galleta de Agua / Chalaco / Chancay / Panetón</h2>
+    <div class="scroll-table">
+      <table>
+        <tr>
+          <th>Ingrediente</th>
+          <th>Galleta Agua 1000</th>
+          <th>Chalaco 2100</th>
+          <th>Chancay 2100</th>
+          <th>Panetón 2000</th>
+        </tr>
+        <tr><td>Harina Panadera</td><td>1000</td><td>2100</td><td>2100</td><td>—</td></tr>
+        <tr><td>Harina Panetonera</td><td>—</td><td>—</td><td>—</td><td>2000</td></tr>
+        <tr><td>Mejorador</td><td>—</td><td>21</td><td>21</td><td>20</td></tr>
+        <tr><td>Levadura Fresca</td><td>10</td><td>63</td><td>84</td><td>100</td></tr>
+        <tr><td>Agua</td><td>400</td><td>1008</td><td>840</td><td>840</td></tr>
+        <tr><td>Sal Yodada</td><td>20</td><td>42</td><td>21</td><td>20</td></tr>
+        <tr><td>Azúcar Blanca</td><td>20</td><td>252</td><td>588</td><td>700</td></tr>
+        <tr><td>Manteca</td><td>150</td><td>210</td><td>105</td><td>—</td></tr>
+        <tr><td>Yemas</td><td>—</td><td>—</td><td>—</td><td>240</td></tr>
+        <tr><td>Margarina</td><td>—</td><td>—</td><td>—</td><td>400</td></tr>
+        <tr><td>Pasas Negras</td><td>—</td><td>—</td><td>—</td><td>640</td></tr>
+        <tr><td>Fruta Confitada</td><td>—</td><td>—</td><td>—</td><td>700</td></tr>
+        <tr><td>Masa Total</td><td>1604</td><td>3799</td><td>3877</td><td>6145</td></tr>
+        <tr><td>Peso unidad</td><td>20</td><td>40</td><td>40</td><td>1000</td></tr>
+        <tr><td>Rendimiento</td><td>80</td><td>95</td><td>97</td><td>6</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Panes de molde -->
+  <div class="card" data-name="pan molde blanco fibra zepellin">
+    <h2>Panes de Molde</h2>
+    <div class="scroll-table">
+      <table>
+        <tr>
+          <th>Ingrediente</th>
+          <th>Molde Blanco 1700</th>
+          <th>Molde Fibra 1500</th>
+          <th>Molde Dulce Zepellin 1500</th>
+        </tr>
+        <tr><td>Harina Pastelera</td><td>1700</td><td>1350</td><td>1500</td></tr>
+        <tr><td>Mejorador</td><td>17</td><td>15</td><td>15</td></tr>
+        <tr><td>Gluten Seco</td><td>34</td><td>45</td><td>—</td></tr>
+        <tr><td>Leche en Polvo</td><td>102</td><td>45</td><td>45</td></tr>
+        <tr><td>Levadura Fresca</td><td>51</td><td>45</td><td>45</td></tr>
+        <tr><td>Agua</td><td>850</td><td>675</td><td>570</td></tr>
+        <tr><td>Sal Yodada</td><td>34</td><td>30</td><td>15</td></tr>
+        <tr><td>Azúcar Blanca</td><td>119</td><td>—</td><td>300</td></tr>
+        <tr><td>Manteca</td><td>119</td><td>45</td><td>—</td></tr>
+        <tr><td>Margarina</td><td>—</td><td>—</td><td>300</td></tr>
+        <tr><td>Salvado</td><td>—</td><td>150</td><td>—</td></tr>
+        <tr><td>Masa Total</td><td>3059</td><td>2504</td><td>2818</td></tr>
+        <tr><td>Peso unidad</td><td>750</td><td>600</td><td>300</td></tr>
+        <tr><td>Rendimiento</td><td>4</td><td>4</td><td>9</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Panes especiales -->
+  <div class="card" data-name="pan maiz cebada fibra soja habas kiwicha">
+    <h2>Panes Especiales (Maíz, Cebada, Fibra, Soja, Habas, Kiwicha)</h2>
+    <div class="scroll-table">
+      <table>
+        <tr>
+          <th>Ingrediente</th>
+          <th>Maíz 1000</th>
+          <th>Cebada 1000</th>
+          <th>Fibra 1500</th>
+          <th>Soja 1000</th>
+          <th>Habas 1000</th>
+          <th>Kiwicha 1500</th>
+        </tr>
+        <tr><td>Harina Panadera</td><td>850</td><td>880</td><td>1350</td><td>900</td><td>900</td><td>1350</td></tr>
+        <tr><td>Harina de Maíz</td><td>150</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Harina de Cebada</td><td>—</td><td>120</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Salvado</td><td>—</td><td>—</td><td>150</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Harina de Soja</td><td>—</td><td>—</td><td>—</td><td>100</td><td>—</td><td>—</td></tr>
+        <tr><td>Harina de Habas</td><td>—</td><td>—</td><td>—</td><td>—</td><td>100</td><td>—</td></tr>
+        <tr><td>Harina de Kiwicha</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>150</td></tr>
+        <tr><td>Levadura Fresca</td><td>30</td><td>30</td><td>45</td><td>30</td><td>30</td><td>45</td></tr>
+        <tr><td>Agua</td><td>500</td><td>500</td><td>675</td><td>450</td><td>480</td><td>750</td></tr>
+        <tr><td>Azúcar Rubia</td><td>120</td><td>120</td><td>180</td><td>130</td><td>130</td><td>150</td></tr>
+        <tr><td>Sal Yodada</td><td>15</td><td>15</td><td>23</td><td>15</td><td>15</td><td>23</td></tr>
+        <tr><td>Manteca</td><td>100</td><td>100</td><td>150</td><td>100</td><td>100</td><td>150</td></tr>
+        <tr><td>Masa Total</td><td>1775</td><td>1775</td><td>2588</td><td>1735</td><td>1805</td><td>2633</td></tr>
+        <tr><td>Peso unidad</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td></tr>
+        <tr><td>Rendimiento</td><td>36</td><td>36</td><td>52</td><td>35</td><td>36</td><td>53</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Pan Yema / Coliza / Hamburguesa -->
+  <div class="card" data-name="pan yema coliza hamburguesa leche">
+    <h2>Pan de Yema / Coliza / Hamburguesa / Leche</h2>
+    <div class="scroll-table">
+      <table>
+        <tr>
+          <th>Ingrediente</th>
+          <th>Yema 1500</th>
+          <th>Coliza 2000</th>
+          <th>Hamburguesa 2000</th>
+          <th>Leche 1500</th>
+        </tr>
+        <tr><td>Harina Panadera</td><td>1500</td><td>2000</td><td>2000</td><td>1500</td></tr>
+        <tr><td>Mejorador</td><td>15</td><td>10</td><td>20</td><td>15</td></tr>
+        <tr><td>Leche en Polvo</td><td>30</td><td>80</td><td>80</td><td>120</td></tr>
+        <tr><td>Levadura Fresca</td><td>45</td><td>60</td><td>60</td><td>45</td></tr>
+        <tr><td>Agua</td><td>600</td><td>900</td><td>940</td><td>750</td></tr>
+        <tr><td>Sal</td><td>23</td><td>30</td><td>30</td><td>23</td></tr>
+        <tr><td>Azúcar Rubia</td><td>180</td><td>200</td><td>200</td><td>150</td></tr>
+        <tr><td>Margarina</td><td>150</td><td>—</td><td>—</td><td>150</td></tr>
+        <tr><td>Huevos</td><td>180</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Manteca Vegetal</td><td>—</td><td>200</td><td>200</td><td>—</td></tr>
+        <tr><td>Masa Total</td><td>2726</td><td>3465</td><td>3534</td><td>2753</td></tr>
+        <tr><td>Peso unidad</td><td>50</td><td>50</td><td>50</td><td>50</td></tr>
+        <tr><td>Rendimiento</td><td>55</td><td>69</td><td>71</td><td>55</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Andino / Dulce / Cachito / Pizza -->
+  <div class="card" data-name="pan andino dulce cachito pizza">
+    <h2>Pan Andino / Dulce / Cachito / Base Pizza</h2>
+    <div class="scroll-table">
+      <table>
+        <tr>
+          <th>Ingrediente</th>
+          <th>Andino 1500</th>
+          <th>Dulce 1500</th>
+          <th>Cachito 1500</th>
+          <th>Base Pizza 1500</th>
+        </tr>
+        <tr><td>Harina Panadera</td><td>1500</td><td>1500</td><td>1500</td><td>1380</td></tr>
+        <tr><td>Levadura Fresca</td><td>30</td><td>75</td><td>45</td><td>45</td></tr>
+        <tr><td>Agua</td><td>750</td><td>375</td><td>675</td><td>855</td></tr>
+        <tr><td>Sal</td><td>23</td><td>15</td><td>23</td><td>30</td></tr>
+        <tr><td>Azúcar Rubia</td><td>225</td><td>375</td><td>150</td><td>30</td></tr>
+        <tr><td>Manteca Vegetal</td><td>150</td><td>—</td><td>300</td><td>—</td></tr>
+        <tr><td>Anís</td><td>8</td><td>—</td><td>8</td><td>—</td></tr>
+        <tr><td>Huevos</td><td>—</td><td>300</td><td>—</td><td>—</td></tr>
+        <tr><td>Margarina</td><td>—</td><td>225</td><td>—</td><td>150</td></tr>
+        <tr><td>Sémola</td><td>—</td><td>—</td><td>—</td><td>120</td></tr>
+        <tr><td>Masa Total</td><td>2685</td><td>2943</td><td>2700</td><td>2650</td></tr>
+        <tr><td>Peso unidad</td><td>50</td><td>50</td><td>50</td><td>300</td></tr>
+        <tr><td>Rendimiento</td><td>54</td><td>59</td><td>54</td><td>9</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Recetas guardadas • Optimizado para celular
+</footer>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function filterCards() {
+  const q = document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c => {
+    const name = c.getAttribute('data-name') || '';
+    const text = c.innerText.toLowerCase();
+    c.style.display = (name.includes(q) || text.includes(q)) ? 'block' : 'none';
+  });
+}
+</script>
+</body>
+</html>
